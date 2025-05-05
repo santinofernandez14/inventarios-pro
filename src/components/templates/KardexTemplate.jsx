@@ -7,7 +7,7 @@ import {v} from "../../styles/variables"
 import { Btnfiltro } from "../moleculas/BtnFiltro";
 import {ContentFiltro} from "../atomos/ContentFiltro"
 import {Buscador} from "../organismos/Buscador"
-import { RegistrarMarca } from "../organismos/formularios/RegistrarMarca";
+import { RegistrarKardex } from "../organismos/formularios/RegistrarKardex";
 import { useState } from "react";
 import {TablaKardex} from "../organismos/tablas/TablaKardex"
 import { BtnSave } from "../moleculas/BtnSave";
@@ -17,16 +17,22 @@ export function KardexTemplate({data}) {
   const [dataSelect, setdataSelect] = useState([]);
   const [accion, setAccion] = useState("");
   const [openRegistro, SetopenRegistro] = useState(false);
-  const nuevoRegistro=()=>{
-    SetopenRegistro(!openRegistro);
-    setAccion("Nuevo")
-    setdataSelect([])
+  const [tipo, setTipo] = useState("");
+  const nuevaentrada=()=>{
+    SetopenRegistro(true);
+    setTipo("entrada")
+
+  }
+  const nuevasalida=()=>{
+    SetopenRegistro(true);
+    setTipo("salida")
+
   }
   const {setBuscador} = useMarcaStore()
   return (
     <Container>
       {
-        openRegistro &&  <RegistrarMarca dataSelect={dataSelect} accion={accion} onClose={()=>SetopenRegistro(!openRegistro)}/>
+        openRegistro &&  <RegistrarKardex tipo={tipo} dataSelect={dataSelect} accion={accion} onClose={()=>SetopenRegistro(!openRegistro)}/>
       }
      
       <header className="header">
@@ -40,9 +46,9 @@ export function KardexTemplate({data}) {
             Kardex
           </Title>
            <BtnSave bgcolor="#52de65" titulo="+ 
-           Entrada"/>
+           Entrada" funcion={nuevaentrada}/>
              <BtnSave bgcolor="#fb6661" titulo="- 
-           Salida"/>
+           Salida" funcion={nuevasalida}/>
         </ContentFiltro>
        
       </section>

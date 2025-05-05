@@ -6,10 +6,10 @@ export const useKardexStore = create((set,get) => ({
     setBuscador:(p)=> {
         set({buscador: p})
     },
-    datamarca: [],
-    marcaItemSelect: [],
+    datakardex: [],
+    kardexItemSelect: [],
     parametros: {},
-    mostrarKardex: async (p) => {
+    mostrarkardex: async (p) => {
         const response = await MostrarKardex(p);
         set({parametros: p});
         set({datakardex: response})
@@ -22,28 +22,28 @@ export const useKardexStore = create((set,get) => ({
 
     },
 
-    insertarKardex: async (p) => {
+    insertarkardex: async (p) => {
         await InsertarKardex(p)
-        const{mostrarKardex} = get();
+        const{mostrarkardex} = get();
         const {parametros} = get();
-        set(mostrarKardex(parametros))
+        set(mostrarkardex(parametros))
     },
 
-    eliminarKardex : async(p) => {
+    eliminarkardex : async(p) => {
         await EliminarKardex(p);
         const{mostrarKardex} = get();
         const {parametros} = get();
         set(mostrarKardex(parametros))
     },
 
-    editarKardex : async(p) => {
+    editarkardex : async(p) => {
         await EditarKardex(p);
         const{mostrarKardex} = get();
         const {parametros} = get();
         set(mostrarKardex(parametros))
     },
 
-    buscarKardex : async(p) => {
+    buscarkardex : async(p) => {
         const response = await BuscarKardex(p)
         set({datakardex:response})
     }
