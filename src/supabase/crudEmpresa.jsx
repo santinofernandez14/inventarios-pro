@@ -19,5 +19,3 @@ export const MostrarEmpresa = async (p) => {
     }
     
   }
-
- 

@@ -1,7 +1,7 @@
 import Swal from "sweetalert2"
 import { supabase } from "./supabase.config";
-export async function InsertarPersonal(p) {
-    const {error} = await supabase.rpc("insertarpersonal",p)
+export async function InsertarKardex(p) {
+    const {error} = await supabase.from("kardex").insert(p)
     if(error) {
         Swal.fire({
             icon: "error",
@@ -12,20 +12,17 @@ export async function InsertarPersonal(p) {
     }
 }
 
-export async function MostrarPersonal(p) {
+export async function MostrarKardex(p) {
  
-    const { data } = await supabase
-      .from("personal")
-      .select()
-      .eq("id_empresa", p.id_empresa)
-      .order("id", { ascending: true });
+    const { data } = await supabase.rpc("mostrarkardexempresa",p).order("id",{ascending:false})
+     
     return data;
   
 }
-export async function EliminarPersonal(p) {
+export async function EliminarKardex(p) {
  
     const { error } = await supabase
-      .from("personal")
+      .from("kardex")
       .delete()
       .eq("id", p.id);
     if (error) {
@@ -33,19 +30,19 @@ export async function EliminarPersonal(p) {
     }
 
 }
-export async function EditarPersonal(p) {
+export async function EditarKardex(p) {
     const { error } = await supabase
-      .from("personal")
+      .from("kardex")
       .update(p)
       .eq("id", p.id);
     if (error) {
-      alert("Error al editar personal", error.message);
+      alert("Error al editar kardex", error.message);
     }
 
 }
-export async function BuscarPersonal(p) {
+export async function BuscarKardex(p) {
     const { data} = await supabase
-    .from("personal")
+    .from("kardex")
     .select()
     .eq("id_empresa", p.id_empresa)
     .ilike("descripcion","%"+p.descripcion+"%")

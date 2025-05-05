@@ -9,7 +9,10 @@ import {ContentFiltro} from "../atomos/ContentFiltro"
 import {Buscador} from "../organismos/Buscador"
 import { RegistrarMarca } from "../organismos/formularios/RegistrarMarca";
 import { useState } from "react";
-export function PersonalTemplate({data}) {
+import {TablaKardex} from "../organismos/tablas/TablaKardex"
+import { BtnSave } from "../moleculas/BtnSave";
+import {Tabs} from "../organismos/Tabs"
+export function KardexTemplate({data}) {
   const [state, setState] = useState(false);
   const [dataSelect, setdataSelect] = useState([]);
   const [accion, setAccion] = useState("");
@@ -34,11 +37,12 @@ export function PersonalTemplate({data}) {
       <section className="area1">
         <ContentFiltro>
           <Title>
-            Personal
+            Kardex
           </Title>
-           <Btnfiltro funcion={nuevoRegistro} bgcolor="#f6f3f3"
-            textcolor="#353535"
-            icono={<v.agregar/>}/>
+           <BtnSave bgcolor="#52de65" titulo="+ 
+           Entrada"/>
+             <BtnSave bgcolor="#fb6661" titulo="- 
+           Salida"/>
         </ContentFiltro>
        
       </section>
@@ -46,8 +50,7 @@ export function PersonalTemplate({data}) {
         <Buscador setBuscador={setBuscador}/>
       </section>
       <section className="main">
-        <TablaMarca data={data} SetopenRegistro={SetopenRegistro}
-        setdataSelect={setdataSelect} setAccion={setAccion}/>
+        <Tabs data={data}/>
       </section>
     </Container>
   );

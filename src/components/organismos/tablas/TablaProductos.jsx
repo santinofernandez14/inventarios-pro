@@ -39,7 +39,6 @@ export function TablaProductos({
     setdataSelect(data);
     setAccion("Editar");
   };
-
   const eliminar = (p) => {
     if (p.descripcion === "Generica") {
       Swal.fire({
@@ -63,15 +62,14 @@ export function TablaProductos({
       }
     });
   };
-
   const columns = [
     {
       accessorKey: "descripcion",
       header: "Descripcion",
       cell: (info) => (
-        <div data-title="Descripcion" className="ContentCell">
+        <td data-title="Descripcion" className="ContentCell">
           <span>{info.getValue()}</span>
-        </div>
+        </td>
       ),
     },
     {
@@ -79,9 +77,9 @@ export function TablaProductos({
       header: "Stock",
       enableSorting: false,
       cell: (info) => (
-        <div data-title="Stock" className="ContentCell">
+        <td data-title="Stock" className="ContentCell">
           <span>{info.getValue()}</span>
-        </div>
+        </td>
       ),
     },
     {
@@ -89,9 +87,9 @@ export function TablaProductos({
       header: "P.venta",
       enableSorting: false,
       cell: (info) => (
-        <div data-title="P.venta" className="ContentCell">
+        <td data-title="P.venta" className="ContentCell">
           <span>{info.getValue()}</span>
-        </div>
+        </td>
       ),
     },
     {
@@ -99,9 +97,9 @@ export function TablaProductos({
       header: "P.compra",
       enableSorting: false,
       cell: (info) => (
-        <div data-title="P.compra" className="ContentCell">
+        <td data-title="P.compra" className="ContentCell">
           <span>{info.getValue()}</span>
-        </div>
+        </td>
       ),
     },
     {
@@ -109,14 +107,14 @@ export function TablaProductos({
       header: "Categoria",
       enableSorting: false,
       cell: (info) => (
-        <div data-title="Categoria" className="ContentCell">
+        <td data-title="Categoria" className="ContentCell">
           <ColorcontentTable
             $color={info.row.original.color}
             className="contentCategoria"
           >
             {info.getValue()}
           </ColorcontentTable>
-        </div>
+        </td>
       ),
     },
     {
@@ -124,9 +122,9 @@ export function TablaProductos({
       header: "Marca",
       enableSorting: false,
       cell: (info) => (
-        <div data-title="Marca" className="ContentCell">
+        <td data-title="Marca" className="ContentCell">
           <span>{info.getValue()}</span>
-        </div>
+        </td>
       ),
     },
     {
@@ -134,16 +132,15 @@ export function TablaProductos({
       header: "",
       enableSorting: false,
       cell: (info) => (
-        <div className="ContentCell">
+        <td className="ContentCell">
           <ContentAccionesTabla
             funcionEditar={() => editar(info.row.original)}
             funcionEliminar={() => eliminar(info.row.original)}
           />
-        </div>
+        </td>
       ),
     },
   ];
-
   const table = useReactTable({
     data,
     columns,
@@ -152,7 +149,6 @@ export function TablaProductos({
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
-
   return (
     <Container>
       <table className="responsive-table">
@@ -170,10 +166,12 @@ export function TablaProductos({
                       <FaArrowsAltV />
                     </span>
                   )}
-                  {{
-                    asc: " 🔼",
-                    desc: " 🔽",
-                  }[header.column.getIsSorted()]}
+                  {
+                    {
+                      asc: " 🔼",
+                      desc: " 🔽",
+                    }[header.column.getIsSorted()]
+                  }
                 </th>
               ))}
             </tr>
@@ -201,15 +199,16 @@ export function TablaProductos({
     </Container>
   );
 }
-
 const Container = styled.div`
   position: relative;
+
   margin: 5% 3%;
   @media (min-width: ${v.bpbart}) {
     margin: 2%;
   }
   @media (min-width: ${v.bphomer}) {
     margin: 2em auto;
+    /* max-width: ${v.bphomer}; */
   }
   .responsive-table {
     width: 100%;
@@ -223,6 +222,7 @@ const Container = styled.div`
     }
     thead {
       position: absolute;
+
       padding: 0;
       border: 0;
       height: 1px;
@@ -258,6 +258,7 @@ const Container = styled.div`
         display: table-row;
       }
     }
+
     th,
     td {
       padding: 0.5em;
@@ -311,6 +312,7 @@ const Container = styled.div`
         justify-content: space-between;
         align-items: center;
         height: 50px;
+
         border-bottom: 1px solid rgba(161, 161, 161, 0.32);
         @media (min-width: ${v.bpbart}) {
           justify-content: center;

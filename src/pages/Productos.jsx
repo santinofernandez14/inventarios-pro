@@ -5,8 +5,13 @@ import { useCategoriasStore } from "../store/CategoriasStore";
 import { useEmpresaStore } from "../store/EmpresaStore";
 import { useMarcaStore } from "../store/MarcaStore";
 import { useProductosStore } from "../store/ProductosStore";
+import { useUsuariosStore } from "../store/UsuariosStore";
+import {BloqueoPagina} from "../components/moleculas/BloqueoPagina"
 
 export function Productos() {
+  const {datapermisos} = useUsuariosStore();
+  const statePermiso = datapermisos.some((objeto)=>objeto.modulos.nombre.includes("Productos"))
+ 
   const {mostrarMarca} = useMarcaStore()
   const {mostrarcategorias}= useCategoriasStore()
   const { mostrarproductos, dataproductos, buscarproductos, buscador } = useProductosStore();
@@ -35,6 +40,9 @@ export function Productos() {
     queryFn: () => mostrarcategorias({ id_empresa: dataempresa?.id }),
     enabled: dataempresa?.id != null,
   });
+  if(statePermiso==false){
+    return <BloqueoPagina />
+  }
   if (isLoading) {
     return <SpinnerLoader />;
   }

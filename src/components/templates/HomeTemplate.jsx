@@ -9,7 +9,7 @@ import { BannerEmpresa } from "../organismos/BannerEmpresa";
 import { useEmpresaStore } from "../../store/EmpresaStore";
 export function HomeTemplate() {
   const [state, setState] = useState(false);
-  
+ 
   return (
     <Container>
       <header className="header">

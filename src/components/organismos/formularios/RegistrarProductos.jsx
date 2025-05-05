@@ -9,7 +9,7 @@ import {ConvertirCapitalize} from "../../../utils/Conversiones"
 import { useProductosStore } from "../../../store/ProductosStore";
 import { useEmpresaStore } from "../../../store/EmpresaStore";
 import { useMarcaStore } from "../../../store/MarcaStore";
-import { Btnfiltro } from "../../moleculas/BtnFiltro";
+import { Btnfiltro } from "../../moleculas/Btnfiltro";
 import {RegistrarMarca} from "../formularios/RegistrarMarca"
 import { useCategoriasStore } from "../../../store/CategoriasStore";
 import {RegistrarCategorias} from "../formularios/RegistrarCategorias"

@@ -22,14 +22,14 @@ export function RegistrarAdmin({ setState }) {
     mutationFn: async (data) => {
       const p = {
         correo: data.correo,
-        pass:data.pass,
-        tipouser:"admin"
+        pass:data.pass
+       
       }; 
       const dt =   await insertarUsuarioAdmin(p);
       if (dt) {
         navigate("/");
       } else {
-        setStateInicio(!stateInicio);
+        setStateInicio(false);
       }
     },
   });
