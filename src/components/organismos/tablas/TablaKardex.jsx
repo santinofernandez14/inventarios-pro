@@ -15,6 +15,7 @@ import {
   import { FaArrowsAltV } from "react-icons/fa";
   import { useState } from "react";
   import {Device} from "../../../styles/breackpoints"
+  import {useKardexStore} from "../../../store/KardexStore"
   export function TablaKardex({
     data,
     SetopenRegistro,
@@ -22,14 +23,14 @@ import {
     setAccion,
   }) {
     const [pagina, setPagina] = useState(1);
-    const { eliminarMarca } = useMarcaStore();
+    const { eliminarkardex } = useKardexStore();
   
     const editar = (data) => {
       if (data.descripcion === "Generica") {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Esta registro no se permite modificar ya que es valor por defecto.",
+          text: "Esta registro ya fue eliminado",
         });
         return;
       }
@@ -38,11 +39,11 @@ import {
       setAccion("Editar");
     };
     const eliminar = (p) => {
-      if (p.descripcion === "Generica") {
+      if (p.estado === 0) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Este registro no se permite eliminar ya que es valor por defecto.",
+          text: "Este registro ya fue eliminado",
         });
         return;
       }
@@ -56,7 +57,7 @@ import {
         confirmButtonText: "Si, eliminar",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await eliminarMarca({ id: p.id });
+          await eliminarkardex({ id: p.id });
         }
       });
     };
@@ -65,7 +66,7 @@ import {
         accessorKey: "descripcion",
         header: "Producto",
         cell: (info) =><td data-title="Producto" className="ContentCell">
-          <span >{info.getValue()}</span>
+          <span style={{textDecoration:info.row.original.estado==0?"line-through":""}} >{info.getValue()}</span>
         </td> 
       },
       {
@@ -113,11 +114,12 @@ import {
       },
       {
         accessorKey: "stock",
-        header: "Stock",
+        header: "stock",
         cell: (info) =><td data-title="Stock" className="ContentCell">
           <span >{info.getValue()}</span>
         </td> 
       },
+      
       {
         accessorKey: "acciones",
         header: "",

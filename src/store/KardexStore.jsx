@@ -31,16 +31,16 @@ export const useKardexStore = create((set,get) => ({
 
     eliminarkardex : async(p) => {
         await EliminarKardex(p);
-        const{mostrarKardex} = get();
+        const{mostrarkardex} = get();
         const {parametros} = get();
-        set(mostrarKardex(parametros))
+        set(mostrarkardex(parametros))
     },
 
     editarkardex : async(p) => {
         await EditarKardex(p);
-        const{mostrarKardex} = get();
+        const{mostrarkardex} = get();
         const {parametros} = get();
-        set(mostrarKardex(parametros))
+        set(mostrarkardex(parametros))
     },
 
     buscarkardex : async(p) => {

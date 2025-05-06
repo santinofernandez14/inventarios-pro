@@ -12,6 +12,7 @@ import { useState } from "react";
 import {TablaKardex} from "../organismos/tablas/TablaKardex"
 import { BtnSave } from "../moleculas/BtnSave";
 import {Tabs} from "../organismos/Tabs"
+import { useKardexStore } from "../../store/KardexStore";
 export function KardexTemplate({data}) {
   const [state, setState] = useState(false);
   const [dataSelect, setdataSelect] = useState([]);
@@ -28,7 +29,7 @@ export function KardexTemplate({data}) {
     setTipo("salida")
 
   }
-  const {setBuscador} = useMarcaStore()
+  const {setBuscador} = useKardexStore()
   return (
     <Container>
       {
