@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { BuscarProductos } from "../supabase/crudProductos";
+import { BuscarProductos} from "../supabase/crudProductos";
+import { ReportStockProductosTodos } from "../supabase/crudProductos";
 import { EditarProductos } from "../supabase/crudProductos";
 import { EliminarProductos } from "../supabase/crudProductos";
 import { InsertarProductos } from "../supabase/crudProductos";
@@ -43,6 +44,14 @@ export const useProductosStore = create((set, get) => ({
   },
   buscarproductos: async (p) => {
     const response = await BuscarProductos(p);
-    set({ dataproductos: response });
+    set({ dataproductos: response })
+    return response;
+    
+    
+    
+  },
+  reportStockProductosTodos: async (p) => {
+    const response = await ReportStockProductosTodos(p);
+    return response;
   },
 }));

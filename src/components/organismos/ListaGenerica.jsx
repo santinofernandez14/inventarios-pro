@@ -12,7 +12,7 @@ export function ListaGenerica({ data, setState, funcion, scroll, bottom }) {
         <BtnCerrar funcion={setState}/>
       </section>
       <section className="contentItems">
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           return (
             <ItemContainer key={index} onClick={() => seleccionar(item)}>
               <span>💎</span>

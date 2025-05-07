@@ -17,6 +17,8 @@ import {Productos} from "../pages/Productos"
 import {Usuarios} from "../pages/Usuarios"
 import { Kardex } from "../pages/Kardex";
 import { Reportes } from "../pages/Reportes";
+import StockActualTodos from "../components/organismos/report/StockActualTodos";
+import StockActualPorProducto from "../components/organismos/report/StockActualPorProducto";
 
 export function MyRoutes() {
   const { user } = UserAuth();
@@ -47,7 +49,10 @@ export function MyRoutes() {
         <Route path="/configurar/productos" element={<Productos />} />
         <Route path="/configurar/personal" element={<Usuarios />} />
         <Route path="/kardex" element={<Kardex />} />
-        <Route path="/reportes" element={<Reportes />} />
+        <Route path="/reportes" element={<Reportes />} >
+        <Route path="stock-actual-todos" element={<StockActualTodos/>}/>
+        <Route path="stock-actual-por-producto" element={<StockActualPorProducto/>}/>
+        </Route>
       </Route>
     </Routes>
   );
