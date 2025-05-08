@@ -17,6 +17,22 @@ export function ReportesTemplate() {
             <SidebarItem to="stock-actual-todos">Todos</SidebarItem>
             <SidebarItem to="stock-bajo-minimo">Bajo del minimo</SidebarItem>
           </SidebarSection>
+          <SidebarSection>
+            <SidebarTitle>
+              Entradas y salidas
+            </SidebarTitle>
+            <SidebarItem to="kardex-entradas-salidas">
+                    Por producto
+            </SidebarItem>
+          </SidebarSection>
+          <SidebarSection>
+            <SidebarTitle>
+              Valorizado
+            </SidebarTitle>
+            <SidebarItem to="inventario-valorado">
+                    Todos
+            </SidebarItem>
+          </SidebarSection>
 
         </Sidebar>
       </PageContainer>

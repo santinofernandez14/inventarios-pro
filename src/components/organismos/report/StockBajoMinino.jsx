@@ -3,41 +3,17 @@ import {Document, Page, Text, View, StyleSheet, Font, PDFViewer} from "@react-pd
 import { useProductosStore } from "../../../store/ProductosStore";
 import {useEmpresaStore} from "../../../store/EmpresaStore"
 import { useQuery } from "@tanstack/react-query";
-import {Buscador} from "../../organismos/Buscador"
-import {ListaGenerica} from "../../organismos/ListaGenerica"
-import { useState } from "react";
 
-function StockActualPorProducto(){
-    const [stateListaProductos, setstateListaProductos] = useState(false)
-    const {reportStockXProducto, buscarproductos, buscador:buscadorproductos, setBuscador, selectproductos,productosItemSelect} = useProductosStore();
+function StockBajoMinimo(){
+    const {reportBajoMinimo} = useProductosStore();
     const { dataempresa} = useEmpresaStore()
    
       
-    const {data, isLoading, error} = useQuery({
-        queryKey: ["reporte stock por producto",{id_empresa:dataempresa?.id,id:productosItemSelect?.id}],
-        queryFn: () => reportStockXProducto({id_empresa:dataempresa?.id,id:productosItemSelect.id}), enabled: !!dataempresa
+    const {data} = useQuery({
+        queryKey: ["reporte stock bajo minimo",{id_empresa:dataempresa?.id}],
+        queryFn: () => reportBajoMinimo({id_empresa:dataempresa?.id}), enabled: !!dataempresa
         
     })
-  
-        
-    
-    const {  data: dataproductosbuscador, isLoading: isLoadingProductosBuscador, error: errorBuscador} = useQuery({
-        queryKey: [
-          "buscar productos",
-          { id_empresa: dataempresa.id, descripcion: buscadorproductos },
-        ],
-        queryFn: () =>
-          buscarproductos({ _id_empresa: dataempresa.id, buscador: buscadorproductos }),
-        enabled: dataempresa.id != null,
-      });
-    
-    /*if(isLoading){
-        return <span>Cargando...</span>
-    }
-
-    if(error){
-        return <span>Error {error.message}</span>
-    }*/
     const styles = StyleSheet.create({
         page:{flexDirection:"row", position:"relative"},
         section:{
@@ -82,37 +58,27 @@ function StockActualPorProducto(){
     const renderTableRow = (rowData,isHeader=false) => (
             <View style={styles.row} key={rowData.id}>
                     <Text style={[styles.cell,isHeader && styles.headerCell]}>
-                        
-                            {rowData.descripcion}
-                        
+                        {
+                            rowData.descripcion
+                        }
                     </Text>
                     <Text style={[styles.cell,isHeader && styles.headerCell]}>
                         {rowData.stock}
+                    </Text>
+                    <Text style={[styles.cell,isHeader && styles.headerCell]}>
+                        {rowData.stock_minimo}
                     </Text>
             </View>
     );
     return (
         <Container>
-            <Buscador funcion={() => setstateListaProductos(!stateListaProductos)} setBuscador={setBuscador}/>
-            {
-            
-             stateListaProductos && (<ListaGenerica funcion={(p)=>{
-                    selectproductos(p)
-                    setBuscador("")
-             }}
-             
-             setState={() => setstateListaProductos(!stateListaProductos)} data={dataproductosbuscador}/>
-
-            )}
-            
-         
             <PDFViewer className="pdfviewer">
-                <Document title="Reporte de stock por producto">
+                <Document title="Reporte de stock bajo minimo">
                     <Page size="A4" orientation="portrait">
                         <View style={styles.page}>
                             <View style={styles.section}>
                                 <Text style={{fontSize:18,fontWeight:"ultrabold", marginBottom:10}}>
-                                    Stock actual por producto
+                                    Stock bajo minimo
                                 </Text>
                                 <Text>
                                     Fecha y hora del reporte: {formattedDate}
@@ -122,7 +88,8 @@ function StockActualPorProducto(){
                                         renderTableRow(
                                             {
                                                 descripcion:"Producto",
-                                                stock:"Stock"
+                                                stock:"Stock",
+                                                stock_minimo:"Stock Minimo"
                                             },
                                             true
                                         )}
@@ -145,9 +112,6 @@ function StockActualPorProducto(){
 const Container = styled.div `
     width: 100%;
     height: 80vh;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
     .pdfviewer{
         width: 100%;
         height: 100%;
@@ -157,4 +121,4 @@ const Container = styled.div `
 
 `
 
-export default StockActualPorProducto;
+export default StockBajoMinimo;

@@ -56,3 +56,40 @@ export async function ReportStockProductosTodos(p){
   return data;
 
 }
+
+export async function ReportStockXProducto(p){
+  const {data,error} = await supabase.from(tabla).select().eq("id_empresa",p.id_empresa).eq("id",p.id);
+  if(error){
+    return;
+  }
+
+  return data;
+
+}
+
+export async function ReportStockBajoMinimo(p){
+  const {data,error} = await supabase.rpc("reportproductosbajominimo", p)
+  if(error){
+    return;
+  }
+
+  return data;
+}
+
+export async function ReportKardexEntradaSalida(p){
+  const {data,error} = await supabase.rpc("mostrarkardexempresa",p)
+  if(error){
+    return;
+  }
+
+  return data;
+}
+
+export async function ReportInventarioValorado(p){
+  const {data,error} = await supabase.rpc("inventariovalorado",p)
+  if(error){
+    return;
+  }
+
+  return data;
+}

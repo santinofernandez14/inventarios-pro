@@ -19,41 +19,85 @@ import { Kardex } from "../pages/Kardex";
 import { Reportes } from "../pages/Reportes";
 import StockActualTodos from "../components/organismos/report/StockActualTodos";
 import StockActualPorProducto from "../components/organismos/report/StockActualPorProducto";
+import StockBajoMinimo from "../components/organismos/report/StockBajoMinino";
+import KardexEntradaSalida from "../components/organismos/report/KardexEntradaSalida"
+import StockInventarioValorado from "../components/organismos/report/StockInventarioValorado";
+import { Layout } from "../hooks/Layout";
 
 export function MyRoutes() {
-  const { user } = UserAuth();
-  const { mostrarUsuarios,idusuario,mostrarpermisos } = useUsuariosStore();
-  const {mostrarEmpresa} = useEmpresaStore()
-  const { data:datausuarios, isLoading, error } = useQuery({
-    queryKey: ["mostrar usuarios"],
-    queryFn: mostrarUsuarios,
-  });
-  const {data:dataempresa}=useQuery({queryKey:["mostrar empresa"],queryFn:()=>mostrarEmpresa({idusaurio:idusuario}),enabled:!!datausuarios})
-  const {data:datapermisos}=useQuery({queryKey:["mostrar permisos",{id_usuario:idusuario}],queryFn:()=>mostrarpermisos({id_usuario:idusuario}),enabled:!!datausuarios})
-
-  if (isLoading){
-    return <SpinnerLoader/>
-  }
-  if(error){
-    return <ErrorMolecula mensaje={error.message}/>
-  }
+  
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route element={<ProtectedRoute user={user} redirectTo="/login" />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/configurar" element={<Configuracion />} />
-        <Route path="/configurar/marca" element={<Marca />} />
+      <Route path="/login" element={<ProtectedRoute accessBy="non-authenticated">
+       
+        <Login />
         
-        <Route path="/configurar/categorias" element={<Categorias />} />
-        <Route path="/configurar/productos" element={<Productos />} />
-        <Route path="/configurar/personal" element={<Usuarios />} />
-        <Route path="/kardex" element={<Kardex />} />
-        <Route path="/reportes" element={<Reportes />} >
+        
+        </ProtectedRoute>} />
+        <Route path="/" element={<ProtectedRoute accessBy="authenticated">
+          <Layout>
+          <Home />
+        </Layout>
+        </ProtectedRoute>} />
+
+        <Route path="/configurar" element={<ProtectedRoute accessBy="authenticated">
+          <Layout>
+          <Configuracion />
+        </Layout>
+        </ProtectedRoute>} />
+       
+        <Route path="/configurar/marca" element={<ProtectedRoute accessBy="authenticated">
+          <Layout>
+          <Marca />
+        </Layout>
+        </ProtectedRoute>} />
+       
+      
+        <Route path="/configurar/categorias" element={<ProtectedRoute accessBy="authenticated">
+          <Layout>
+          <Categorias />
+        </Layout>
+        </ProtectedRoute>} />
+       
+        
+        <Route path="/configurar/productos" element={<ProtectedRoute accessBy="authenticated">
+          <Layout>
+          <Productos />
+        </Layout>
+        </ProtectedRoute>} />
+       
+        <Route path="/configurar/personal" element={<ProtectedRoute accessBy="authenticated">
+          <Layout>
+          <Usuarios />
+        </Layout>
+        </ProtectedRoute>} />
+       
+        <Route path="/kardex" element={<ProtectedRoute accessBy="authenticated">
+          <Layout>
+          <Kardex />
+        </Layout>
+        </ProtectedRoute>} />
+       
+        <Route path="/reportes" element={<ProtectedRoute accessBy="authenticated">
+          <Layout>
+          <Reportes />
+        </Layout>
+        </ProtectedRoute>} 
+        >
+
         <Route path="stock-actual-todos" element={<StockActualTodos/>}/>
         <Route path="stock-actual-por-producto" element={<StockActualPorProducto/>}/>
-        </Route>
-      </Route>
+        <Route path="stock-bajo-minimo" element={<StockBajoMinimo/>}/>
+        <Route path="kardex-entradas-salidas" element={<KardexEntradaSalida/>}/>
+        <Route path="inventario-valorado" element={<StockInventarioValorado/>}/>
+          </Route>
+       
+       
+       
+        
+        
+      
+     
     </Routes>
   );
 }

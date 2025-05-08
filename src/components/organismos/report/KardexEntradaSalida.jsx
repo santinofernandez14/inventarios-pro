@@ -7,15 +7,15 @@ import {Buscador} from "../../organismos/Buscador"
 import {ListaGenerica} from "../../organismos/ListaGenerica"
 import { useState } from "react";
 
-function StockActualPorProducto(){
+function KardexEntradaSalida(){
     const [stateListaProductos, setstateListaProductos] = useState(false)
-    const {reportStockXProducto, buscarproductos, buscador:buscadorproductos, setBuscador, selectproductos,productosItemSelect} = useProductosStore();
+    const {reportKardexEntradaSalida, buscarproductos, buscador:buscadorproductos, setBuscador, selectproductos,productosItemSelect} = useProductosStore();
     const { dataempresa} = useEmpresaStore()
    
       
     const {data, isLoading, error} = useQuery({
-        queryKey: ["reporte stock por producto",{id_empresa:dataempresa?.id,id:productosItemSelect?.id}],
-        queryFn: () => reportStockXProducto({id_empresa:dataempresa?.id,id:productosItemSelect.id}), enabled: !!dataempresa
+        queryKey: ["reporte kardex entrada salida",{_id_empresa:dataempresa?.id,_id_producto:productosItemSelect?.id}],
+        queryFn: () => reportKardexEntradaSalida({_id_empresa:dataempresa?.id,_id_producto:productosItemSelect.id}), enabled: !!dataempresa
         
     })
   
@@ -81,10 +81,22 @@ function StockActualPorProducto(){
     const formattedDate = `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`
     const renderTableRow = (rowData,isHeader=false) => (
             <View style={styles.row} key={rowData.id}>
+                <Text style={[styles.cell,isHeader && styles.headerCell]}>
+                        {rowData.nombres}
+                    </Text>
                     <Text style={[styles.cell,isHeader && styles.headerCell]}>
                         
                             {rowData.descripcion}
                         
+                    </Text>
+                    <Text style={[styles.cell,isHeader && styles.headerCell]}>
+                        {rowData.tipo}
+                    </Text>
+                    <Text style={[styles.cell,isHeader && styles.headerCell]}>
+                        {rowData.cantidad}
+                    </Text>
+                    <Text style={[styles.cell,isHeader && styles.headerCell]}>
+                        {rowData.fecha}
                     </Text>
                     <Text style={[styles.cell,isHeader && styles.headerCell]}>
                         {rowData.stock}
@@ -107,12 +119,12 @@ function StockActualPorProducto(){
             
          
             <PDFViewer className="pdfviewer">
-                <Document title="Reporte de stock por producto">
-                    <Page size="A4" orientation="portrait">
+                <Document title="Reporte de kardex - entrada y salida">
+                    <Page size="A4" orientation="landscape">
                         <View style={styles.page}>
                             <View style={styles.section}>
                                 <Text style={{fontSize:18,fontWeight:"ultrabold", marginBottom:10}}>
-                                    Stock actual por producto
+                                    Kardex - entrada y salida por producto
                                 </Text>
                                 <Text>
                                     Fecha y hora del reporte: {formattedDate}
@@ -121,7 +133,11 @@ function StockActualPorProducto(){
                                     {
                                         renderTableRow(
                                             {
+                                                nombres:"Usuario",
                                                 descripcion:"Producto",
+                                                tipo:"Tipo",
+                                                cantidad:"Cantidad",
+                                                fecha:"Fecha",
                                                 stock:"Stock"
                                             },
                                             true
@@ -157,4 +173,4 @@ const Container = styled.div `
 
 `
 
-export default StockActualPorProducto;
+export default KardexEntradaSalida;
