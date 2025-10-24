@@ -77,7 +77,7 @@ SweetAlert2: Para la creación de alertas y modales atractivos.
 
 React Icons: Para la inclusión de iconos en la aplicación.
 
-📁 Estructura del Proyecto
+## 📁 Estructura del Proyecto
 /src
 ├── assets/             # Archivos estáticos como imágenes y JSON
 ├── components/         # Componentes reutilizables
@@ -99,8 +99,8 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
 ### 1️⃣ Clonar el repositorio
 ```bash
-git clone 
-cd pps_pf
+git clone https://github.com/santinofernandez14/inventarios-pro.git 
+cd inventarios-pro
 
 ```
 
