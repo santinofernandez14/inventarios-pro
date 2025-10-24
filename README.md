@@ -1,43 +1,49 @@
-🧾 FiveStock - Sistema de Gestión de Inventarios
+# 🧾 FiveStock - Sistema de Gestión de Inventarios
 
+## 📋 Descripción General
 FiveStock es una aplicación web diseñada para la gestión de inventarios, permitiendo a los usuarios administrar productos, categorías, marcas, personal y realizar un seguimiento de las entradas y salidas de inventario a través de un Kardex. Además, ofrece la generación de reportes detallados.
 
-🚀 Características Principales
-🔐 Autenticación de Usuarios
+---
+
+
+## 🚀 Características Principales
+
+
+🔐 **Autenticación de Usuarios**
 
 Sistema de inicio de sesión y registro de usuarios, con diferentes roles y permisos.
 
-📊 Dashboard Principal
+📊 **Dashboard Principal**
 
 Visualización de información general de la empresa y accesos directos a las principales funcionalidades.
 
-📦 Gestión de Productos
+📦 **Gestión de Productos**
 
 CRUD completo para productos, incluyendo descripción, stock, precios de venta y compra, etc.
 
 Asignación de categorías y marcas.
 
-🏷️ Gestión de Categorías y Marcas
+🏷️ **Gestión de Categorías y Marcas**
 
 Creación, edición y eliminación de categorías y marcas para una mejor organización de los productos.
 
-👥 Gestión de Personal
+👥 **Gestión de Personal**
 
 Administración de usuarios (personal) con asignación de roles y permisos específicos para cada módulo del sistema.
 
-📈 Kardex de Inventario
+📈 **Kardex de Inventario**
 
 Registro de entradas y salidas de productos, manteniendo un historial detallado de los movimientos de inventario.
 
-🧾 Generación de Reportes
+🧾 **Generación de Reportes**
 
 Reportes en formato PDF para visualizar el stock actual, productos bajo el mínimo, kardex por producto e inventario valorado.
 
-🌗 Tema Claro y Oscuro
+🌗 **Tema Claro y Oscuro**
 
 Interfaz adaptable a las preferencias del usuario.
 
-🛠️ Tecnologías Utilizadas
+## 🛠️ Tecnologías Utilizadas
 
 Este proyecto fue desarrollado utilizando las siguientes tecnologías:
 
@@ -91,21 +97,28 @@ React Icons: Para la inclusión de iconos en la aplicación.
 
 Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
-1️⃣ Clonar el repositorio
-git clone []()
+### 1️⃣ Clonar el repositorio
+```bash
+git clone 
 cd pps_pf
 
-2️⃣ Instalar dependencias
+```
+
+
+## 2️⃣ Instalar dependencias
+```bash
 npm install
 
-3️⃣ Configurar variables de entorno
+```
+
+## 3️⃣ Configurar variables de entorno
 
 Crea un archivo .env en la raíz del proyecto y añade las credenciales de tu proyecto de Supabase:
 
 VITE_APP_SUPABASE_URL=TU_URL_DE_SUPABASE
 VITE_APP_SUPABASE_ANON_KEY=TU_API_KEY_DE_SUPABASE
 
-4️⃣ Ejecutar el proyecto
+## 4️⃣ Ejecutar el proyecto
 npm run dev
 
 
