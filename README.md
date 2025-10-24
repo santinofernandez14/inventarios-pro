@@ -1,123 +1,106 @@
-🚀 FiveStock - Sistema de Gestión de Inventarios
+🧾 FiveStock - Sistema de Gestión de Inventarios
 
-FiveStock es una aplicación web moderna para la gestión de inventarios, diseñada para que empresas o negocios puedan administrar productos, categorías, marcas y personal, así como controlar entradas y salidas mediante un Kardex. Además, permite generar reportes PDF con información detallada del stock.
+FiveStock es una aplicación web diseñada para la gestión de inventarios, permitiendo a los usuarios administrar productos, categorías, marcas, personal y realizar un seguimiento de las entradas y salidas de inventario a través de un Kardex. Además, ofrece la generación de reportes detallados.
 
-🧩 Características Principales
+🚀 Características Principales
 🔐 Autenticación de Usuarios
 
-Sistema de inicio de sesión y registro.
-
-Roles y permisos personalizados según el tipo de usuario.
+Sistema de inicio de sesión y registro de usuarios, con diferentes roles y permisos.
 
 📊 Dashboard Principal
 
-Vista general de la empresa.
-
-Accesos directos a las principales funcionalidades.
+Visualización de información general de la empresa y accesos directos a las principales funcionalidades.
 
 📦 Gestión de Productos
 
-CRUD completo (crear, leer, actualizar, eliminar).
-
-Datos: descripción, stock, precios de compra y venta, etc.
+CRUD completo para productos, incluyendo descripción, stock, precios de venta y compra, etc.
 
 Asignación de categorías y marcas.
 
 🏷️ Gestión de Categorías y Marcas
 
-Creación, edición y eliminación.
-
-Organización eficiente del inventario.
+Creación, edición y eliminación de categorías y marcas para una mejor organización de los productos.
 
 👥 Gestión de Personal
 
-Administración de usuarios del sistema.
-
-Asignación de roles y permisos por módulo.
+Administración de usuarios (personal) con asignación de roles y permisos específicos para cada módulo del sistema.
 
 📈 Kardex de Inventario
 
-Registro detallado de entradas y salidas.
-
-Historial completo de movimientos.
+Registro de entradas y salidas de productos, manteniendo un historial detallado de los movimientos de inventario.
 
 🧾 Generación de Reportes
 
-Exportación en formato PDF:
-
-Stock actual.
-
-Productos bajo el mínimo.
-
-Kardex por producto.
-
-Inventario valorado.
+Reportes en formato PDF para visualizar el stock actual, productos bajo el mínimo, kardex por producto e inventario valorado.
 
 🌗 Tema Claro y Oscuro
 
 Interfaz adaptable a las preferencias del usuario.
 
 🛠️ Tecnologías Utilizadas
+
+Este proyecto fue desarrollado utilizando las siguientes tecnologías:
+
 🖥️ Frontend
 
-⚛️ React (v19) – Biblioteca para construir interfaces modernas.
+React (v19): Biblioteca para construir interfaces de usuario.
 
-⚡ Vite – Herramienta de desarrollo rápida y ligera.
+Vite: Herramienta de desarrollo frontend moderna y rápida.
 
-💅 Styled Components – Estilización basada en componentes.
+Styled Components: Para la estilización de componentes.
 
-🧭 React Router (v7) – Enrutamiento de vistas.
+React Router (v7): Para el enrutamiento en la aplicación.
 
-🔁 React Query (v5) – Gestión del estado del servidor y caché.
+React Query (v5): Para la gestión del estado del servidor, fetching, caching y actualización de datos.
 
-🧠 Zustand – Estado global simple y escalable.
+Zustand: Para la gestión del estado global de la aplicación.
 
-📝 React Hook Form – Manejo eficiente de formularios.
+React Hook Form: Para la gestión de formularios.
 
 ☁️ Backend (BaaS)
 
-🐘 Supabase – Plataforma open source basada en PostgreSQL, con autenticación y almacenamiento integrados.
+Supabase: Plataforma open source que provee base de datos PostgreSQL, autenticación y almacenamiento.
 
 📚 Librerías Adicionales
 
-📄 @react-pdf/renderer → Generación de PDFs desde el cliente.
+@react-pdf/renderer: Para la generación de documentos PDF en el cliente.
 
-📊 @tanstack/react-table → Tablas y datagrids.
+@tanstack/react-table: Para la creación de tablas y datagrids.
 
-💬 SweetAlert2 → Alertas y modales personalizados.
+SweetAlert2: Para la creación de alertas y modales atractivos.
 
-🎨 React Icons → Amplio set de íconos vectoriales.
+React Icons: Para la inclusión de iconos en la aplicación.
 
-🧱 Estructura del Proyecto
+📁 Estructura del Proyecto
 /src
-├── assets/             # Archivos estáticos (imágenes, JSON, etc.)
+├── assets/             # Archivos estáticos como imágenes y JSON
 ├── components/         # Componentes reutilizables
-│   ├── atomos/         # Componentes básicos
-│   ├── moleculas/      # Compuestos por átomos
-│   ├── organismos/     # Componentes complejos
+│   ├── atomos/         # Componentes más pequeños y básicos
+│   ├── moleculas/      # Componentes compuestos por átomos
+│   ├── organismos/     # Componentes más complejos
 │   └── templates/      # Plantillas de páginas
-├── context/            # Contextos globales (AuthContext, etc.)
+├── context/            # Contexto de React (ej. AuthContext)
 ├── hooks/              # Hooks personalizados
-├── pages/              # Vistas principales
+├── pages/              # Vistas principales de la aplicación
 ├── routers/            # Configuración de rutas
-├── store/              # Estado global con Zustand
+├── store/              # Stores de Zustand para el estado global
 ├── styles/             # Estilos globales, temas y variables
 └── supabase/           # Configuración y funciones CRUD de Supabase
 
 ⚙️ Instalación y Configuración
 
-Sigue estos pasos para ejecutar el proyecto localmente 👇
+Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
 1️⃣ Clonar el repositorio
-git clone https://github.com/santinofernandez14/inventarios-pro.git
-cd FiveStock
+git clone []()
+cd pps_pf
 
 2️⃣ Instalar dependencias
 npm install
 
 3️⃣ Configurar variables de entorno
 
-Crea un archivo .env en la raíz del proyecto con tus credenciales de Supabase:
+Crea un archivo .env en la raíz del proyecto y añade las credenciales de tu proyecto de Supabase:
 
 VITE_APP_SUPABASE_URL=TU_URL_DE_SUPABASE
 VITE_APP_SUPABASE_ANON_KEY=TU_API_KEY_DE_SUPABASE
@@ -126,4 +109,6 @@ VITE_APP_SUPABASE_ANON_KEY=TU_API_KEY_DE_SUPABASE
 npm run dev
 
 
-La aplicación estará disponible en 👉 http://localhost:5173
+La aplicación estará disponible en
+👉 http://localhost:5173
+
