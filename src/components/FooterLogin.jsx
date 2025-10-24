@@ -1,51 +1,66 @@
 import styled from "styled-components";
 import { GiPadlock } from "react-icons/gi";
+
 export function FooterLogin() {
   return (
     <Container>
-      <section className="lock">
-        <GiPadlock />
-        <span>
-          Esta es una página segura del grupo 5. Si tienes dudas sobre la
-          autenticidad de la web, comunícate con
-          <br /> nosotros al 311-9898 o a través de nuestros medios digitales.
-        </span>
+      <section className="security-info">
+        <GiPadlock size={14} />
+        <span>Tu información está protegida</span>
       </section>
-      <section className="derechos">
-        <span>StockPRO S.A - RUC: 20100047218</span>
-        <div className="separador"></div>
+
+      <section className="copyright">
         <span>Todos los derechos reservados</span>
-        <div className="separador"></div>
-        <span>© 2025 grupo5.com</span>
+        <div className="separator" />
+        <span> 2025 grupo5.com</span>
       </section>
     </Container>
   );
 }
-const Container = styled.div`
+
+const Container = styled.footer`
   display: flex;
   flex-direction: column;
-  font-size: 12.2px;
+  font-size: 0.75rem;
   color: #91a4b7;
-  gap:5px;
-  .lock {
-    border-bottom: 1px solid rgba(145, 164, 183,0.3);
-    gap:5px;
-    display:flex;
-    align-items:center;
-  }
-  .derechos {
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .security-info {
     display: flex;
-    justify-content: space-between;
-   .separador{
-    width:1px;
-    background-color:rgba(145, 164, 183,0.3);
-    margin-top:4px;
-    height:80%;
-    align-items:center;
-    display:flex;
-   }
-    span{
-      margin-top:5px;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(145, 164, 183, 0.2);
+
+    svg {
+      color: #91a4b7;
+    }
+  }
+
+  .copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+
+    .separator {
+      width: 1px;
+      height: 0.75rem;
+      background-color: rgba(145, 164, 183, 0.3);
+    }
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      gap: 0.25rem;
+
+      .separator {
+        display: none;
+      }
     }
   }
 `;
